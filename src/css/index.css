@@ -1,0 +1,18 @@
+/* src/css/index.css */
+/* Estilos globais da aplicação */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Modelo de caixa consistente */
+}
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+    background-image: url('../assets/images/Tuscon_Arizona_Desert_Sunset_Over_Mountains_-_panoramio.jpg');
+    background-size: cover; /* Cobre toda a tela */
+    background-repeat: no-repeat;
+    color: #000;
+    line-height: 1.5; /* Espaçamento entre linhas */
+}

@@ -1,0 +1,75 @@
+/* src/css/App.css */
+
+/* Animação principal do título "Previsão do Tempo" */
+@keyframes windEffect {
+    0%, 100% {
+      transform: translateX(0) rotateZ(0deg); /* Posição inicial/final */
+      text-shadow: 2px 2px 2px rgba(0,0,0,0.3); /* Sombra suave */
+    }
+    25% {
+      transform: translateX(-2px) rotateZ(-1deg); /* Movimento para esquerda */
+      text-shadow: 4px 4px 3px rgba(0,0,0,0.2); /* Sombra mais intensa */
+    }
+    75% {
+      transform: translateX(2px) rotateZ(1deg); /* Movimento para direita */
+      text-shadow: 0px 4px 3px rgba(0,0,0,0.2); /* Sombra assimétrica */
+    }
+}
+  
+/* Estilo do título principal */
+h1 {
+    font-size: 4rem; /* Tamanho grande da fonte */
+    -webkit-text-stroke: 1px rgba(187, 87, 62, 255); /* Borda rosa no texto */
+    color: rgba(174, 84, 113, 255); /* Cor do texto */
+    display: inline-block; /* Necessário para animações */
+    animation: windEffect 3s ease-in-out infinite; /* Aplica animação de vento */
+    position: relative;
+    margin: 20px 0; /* Espaçamento vertical */
+}
+
+/* Container principal da aplicação */
+.container {
+    max-width: 1000px; /* Largura máxima do conteúdo */
+    padding: 30px; /* Espaçamento interno */
+    margin: 0 auto; /* Centraliza na tela */
+    text-align: center; /* Alinhamento centralizado */
+}
+
+/* Estilização do campo de input */
+input {
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 20px 0 0 20px; /* Bordas arredondadas à esquerda */
+    border: none; /* Remove borda padrão */
+    width: 80%; /* Largura responsiva */
+    max-width: 505px; /* Largura máxima */
+    outline: none; /* Remove contorno ao focar */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+/* Estilização do botão de busca */
+button {
+    background-color: #000; /* Fundo preto */
+    color: #F56; /* Texto rosa */
+    border: none; /* Remove borda padrão */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 0 20px 20px 0; /* Bordas arredondadas à direita */
+    cursor: pointer; /* Ícone de cursor ao passar o mouse */
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Efeito hover do botão */
+button:hover {
+    background-color: #456; /* Mudança de cor suave ao passar o mouse */
+}
+
+/* Estilo para o estado de carregamento */
+.weather-loading {
+    font-size: xx-large; /* Tamanho grande da fonte */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+/* Estilo para o estado de erro */
+.weather-error {
+    color: #F56; /* Cor do texto em rosa */
+    margin-top: 20px; /* Espaçamento superior */
+}

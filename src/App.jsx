@@ -1,53 +1,69 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import './css/App.css'
 import WeatherInformations from './components/WeatherInformations'
 import WeatherInformations5Days from './components/WeatherInformations5Days'
 import useWeather from './hooks/useWeather'
 
 const App = () => {
-  // Referência para o input de busca
-  const inputRef = useRef()
-  
-  // Custom hook para gerenciar o estado do clima
-  const { weather, weather5Days, loading, error, searchCity } = useWeather()
+    const inputRef = useRef()
+    const { weather, weather5Days, loading, error, searchCity, searchByCoords } = useWeather()
 
-  // Manipulador de busca
-  const handleSearch = () => {
-    const city = inputRef.current.value
-    if (city) {
-      searchCity(city)
+    // Efeito para carregar a localização inicial
+    useEffect(() => {
+        const getLocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        searchByCoords(
+                            position.coords.latitude,
+                            position.coords.longitude
+                        )
+                    },
+                    (error) => {
+                        console.error('Erro ao obter localização:', error)
+                        searchCity('São Paulo') // Fallback para uma cidade padrão
+                    }
+                )
+            } else {
+                searchCity('São Paulo') // Fallback se geolocalização não for suportada
+            }
+        }
+
+        getLocation()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleSearch = () => {
+        const city = inputRef.current.value
+        if (city) {
+            searchCity(city)
+        }
     }
-  }
 
-  // Função para detectar a tecla "Enter" no input
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch() // Chama a função de busca ao pressionar Enter
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch()
+        }
     }
-  }
 
-  return (
-    <div className='container'>
-      <h1>Previsão do Tempo</h1>
-      
-      {/* Campo de entrada e botão de busca */}
-      <input 
-        type='text' 
-        placeholder='Digite o nome da cidade' 
-        ref={inputRef} 
-        onKeyDown={handleKeyDown} // Adiciona o event listener para a tecla "Enter"
-      />
-      <button onClick={handleSearch}>Buscar</button>
+    return (
+        <div className='container'>
+            <h1>Previsão do Tempo</h1>
+            
+            <input 
+                type='text' 
+                placeholder='Digite o nome da cidade' 
+                ref={inputRef} 
+                onKeyDown={handleKeyDown}
+            />
+            <button onClick={handleSearch}>Buscar</button>
 
-      {/* Estados de carregamento e erro */}
-      {loading && <p className='weather-loading'>Carregando...</p>}
-      {error && <p className='weather-error'>{error}</p>}
+            {loading && <p className='weather-loading'>Carregando...</p>}
+            {error && <p className='weather-error'>{error}</p>}
 
-      {/* Exibe componentes apenas quando os dados estiverem disponíveis */}
-      {weather && <WeatherInformations weather={weather} />}
-      {weather5Days && <WeatherInformations5Days weather5Days={weather5Days} />}
-    </div>
-  )
+            {weather && <WeatherInformations weather={weather} />}
+            {weather5Days && <WeatherInformations5Days weather5Days={weather5Days} />}
+        </div>
+    )
 }
 
 export default App

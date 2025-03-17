@@ -2,129 +2,130 @@
 
 /* Container principal da previsão para 5 dias */
 .weather-container {
-    position: relative; /* Permite posicionamento absoluto dos elementos filhos */
-    background-color: rgba(180, 180, 180, 0.2); /* Fundo semi-transparente */
-    border-radius: 15px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
-    margin: 20px 0; /* Espaçamento externo */
-}
-
-/* Estilo do título da previsão para 5 dias */
-h3 {
-    font-size: 2rem; /* Tamanho da fonte */
-    font-weight: bolder; /* Texto em negrito */
-    margin-bottom: 20px; /* Espaçamento inferior */
-    position: relative; /* Permite posicionamento absoluto do pseudo-elemento */
-    display: inline-block; /* Necessário para animações e efeitos */
+    position: relative; /* Permite sobreposição de elementos filhos absolutos */
+    background-color: rgba(180, 180, 180, 0.2); /* Fundo cinza semi-transparente */
+    border-radius: 15px; /* Bordas arredondadas suaves */
+    padding: 20px; /* Espaçamento interno para respiração visual */
+    margin: 20px 0; /* Margem vertical para separar de outros componentes */
     
-    /* Efeito de brilho solar */
+    /* Efeito de brilho solar dinâmico */
     &::after {
-        content: ''; /* Pseudo-elemento obrigatório */
-        position: absolute;
-        top: 50%; /* Centraliza verticalmente */
-        left: 50%; /* Centraliza horizontalmente */
-        transform: translate(-50%, -50%); /* Ajusta o centro */
-        width: 150%; /* Largura maior que o texto */
-        height: 120%; /* Altura maior que o texto */
+        content: ''; /* Necessário para pseudo-elementos */
+        position: absolute; /* Posicionamento relativo ao container */
+        top: 50%; /* Alinhamento vertical central */
+        left: 50%; /* Alinhamento horizontal central */
+        transform: translate(-50%, -50%); /* Centralização precisa */
+        width: 100%; /* Cobre toda a largura do container */
+        height: 100%; /* Cobre toda a altura do container */
         background: radial-gradient(
             circle, 
-            rgba(255, 230, 0, 0.8) 20%, /* Cor do brilho (amarelo) */
-            rgba(255, 255, 255, 0) 70% /* Degradê para transparente */
+            rgba(255, 230, 0, 0.8) 20%, /* Núcleo amarelo brilhante */
+            rgba(255, 255, 255, 0) 70% /* Degradê para transparência */
         );
-        border-radius: 50%; /* Forma circular */
-        animation: sunGlowHorizontal 4s ease-in-out infinite; /* Animação contínua */
-        z-index: -1; /* Mantém o brilho atrás do texto */
-        opacity: 0.8; /* Transparência do brilho */
+        border-radius: 50%; /* Formato circular para efeito de sol */
+        animation: sunGlowHorizontal 10s ease-in-out infinite; /* Movimento contínuo */
+        z-index: -1; /* Mantém atrás do conteúdo principal */
+        opacity: 0.6; /* Transparência para efeito sutil */
     }
 }
 
-/* Animação do brilho solar horizontal */
+/* Animação do brilho solar móvel */
 @keyframes sunGlowHorizontal {
     0% {
-        transform: translate(-50%, -50%) translateX(-30%) scale(0.9); /* Movimento para a esquerda */
+        transform: translate(-50%, -50%) translateX(-30%) scale(0.9); /* Posição inicial à esquerda */
     }
     50% {
-        transform: translate(-50%, -50%) translateX(30%) scale(1.1); /* Movimento para a direita */
+        transform: translate(-50%, -50%) translateX(30%) scale(1); /* Movimento para direita com escala normal */
     }
     100% {
-        transform: translate(-50%, -50%) translateX(-30%) scale(0.9); /* Retorno à posição inicial */
+        transform: translate(-50%, -50%) translateX(-30%) scale(0.9); /* Retorno suave à posição inicial */
     }
 }
 
-/* Lista de previsões */
-.weather-list {
-    display: flex;
-    justify-content: space-between; /* Distribuição uniforme dos itens */
-    flex-wrap: wrap; /* Quebra de linha em telas pequenas */
-    gap: 7px; /* Espaçamento entre os itens */
+/* Cabeçalho da seção de previsão */
+h3 {
+    font-size: 2rem; /* Tamanho destacado para hierarquia visual */
+    font-weight: bolder; /* Peso da fonte para ênfase */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    position: relative; /* Permite efeitos de sobreposição futuros */
 }
 
-/* Itens individuais da previsão */
+/* Grid de previsões responsivo */
+.weather-list {
+    display: flex; /* Layout flexível para organização */
+    justify-content: space-between; /* Distribuição uniforme horizontal */
+    flex-wrap: wrap; /* Quebra responsiva para múltiplas linhas */
+    gap: 7px; /* Espaçamento uniforme entre elementos */
+}
+
+/* Cards individuais de previsão */
 .weather-item {
-    text-align: center; /* Centraliza o conteúdo */
+    text-align: center; /* Alinhamento central do conteúdo */
     background-color: rgba(180, 180, 180, 0.8); /* Fundo semi-transparente */
-    border-radius: 12px; /* Bordas arredondadas */
-    padding: 10px; /* Espaçamento interno */
-    max-width: 169px; /* Largura máxima */
-    position: relative; /* Permite posicionamento absoluto do pseudo-elemento */
-    animation: floatShadow 3s ease-in-out infinite; /* Animação de flutuação */
-    transform: translateY(0); /* Posição inicial */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: all 0.3s ease; /* Transição suave ao hover */
+    border-radius: 12px; /* Bordas arredondadas modernas */
+    padding: 10px; /* Espaçamento interno para conteúdo */
+    max-width: 169px; /* Largura máxima para consistência */
+    position: relative; /* Base para elementos posicionados */
+    animation: floatShadow 3s ease-in-out infinite; /* Efeito de flutuação */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil de profundidade */
+    transition: all 0.3s ease; /* Transições suaves para interações */
     
-    /* Efeito de brilho interno */
+    /* Camada de brilho interno */
     &::before {
         content: ''; /* Pseudo-elemento obrigatório */
-        position: absolute;
+        position: absolute; /* Cobertura total do card */
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 12px; /* Bordas arredondadas */
-        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3); /* Sombra interna */
-        animation: innerGlow 2.5s alternate infinite; /* Animação de brilho */
+        border-radius: 12px; /* Match com borda do container */
+        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3); /* Brilho interno */
+        animation: innerGlow 2.5s alternate infinite; /* Pulsação luminosa */
     }
 }
 
-/* Animação de flutuação e sombra */
+/* Animação de flutuação 3D */
 @keyframes floatShadow {
     0%, 100% {
-        transform: translateY(0); /* Posição inicial/final */
+        transform: translateY(0); /* Estado neutro */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                    0 0 10px rgba(255, 165, 0, 0.3); /* Sombra laranja */
+                    0 0 10px rgba(255, 165, 0, 0.3); /* Sombra ambiente */
     }
     50% {
-        transform: translateY(-5px); /* Efeito de levitação */
+        transform: translateY(-5px); /* Elevação do card */
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
                     0 0 20px rgba(255, 140, 0, 0.5); /* Sombra mais intensa */
     }
 }
 
-/* Animação do brilho interno */
+/* Animação de pulsação interna */
 @keyframes innerGlow {
     0% {
-        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2); /* Brilho suave */
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2); /* Brilho mínimo */
     }
     100% {
-        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.4); /* Brilho intenso */
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.4); /* Brilho máximo */
     }
 }
 
-/* Efeito hover nos itens */
+/* Efeito de interação ao passar o mouse */
 .weather-item:hover {
-    transform: scale(1.02) translateY(-2px); /* Aumento suave */
+    transform: scale(1.02) translateY(-2px); /* Crescimento sutil */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3),
-                0 0 25px rgba(255, 69, 0, 0.6); /* Sombra mais intensa */
+                0 0 25px rgba(255, 69, 0, 0.6); /* Sombra dramática */
 }
 
-/* Estilos do texto da previsão */
-.forecast-day,
+/* Tipografia especializada */
+.forecast-day {
+    font-size: 1.25rem; /* Tamanho legível para dias */
+    text-transform: capitalize; /* Padronização de formatação */
+}
+
 .forecast-description {
-    text-transform: capitalize; /* Primeira letra maiúscula */
-    font-size: 1.25rem; /* Tamanho da fonte */
+    font-size: 1rem; /* Tamanho diferenciado para descrições */
+    text-transform: capitalize; /* Formato de frase */
 }
 
-/* Estilo da temperatura */
 .forecast-temperature {
-    font-size: 0.85rem; /* Tamanho menor para a temperatura */
+    font-size: 0.85rem; /* Tamanho discreto para dados numéricos */
 }

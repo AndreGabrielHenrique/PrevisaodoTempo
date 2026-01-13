@@ -1,0 +1,42 @@
+/* src/sass/index.sass */
+/* Estilos globais da aplicação (aplicados a todo o projeto) */
+
+/* Importa fonte Google Fonts (Nunito Sans) com ampla gama de pesos e estilos */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap')
+
+/* Reset básico para todos os elementos */
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  /* Modelo de caixa border-box para facilitar dimensionamento (padding e border incluídos na largura/altura) */
+
+/* Comportamento de scroll suave para navegação por âncoras */
+html
+  scroll-behavior: smooth
+
+/* Estilos globais do body */
+body
+  font-family: "Nunito Sans", sans-serif
+  /* Define a fonte padrão para toda a aplicação */
+  background-image: url('../assets/images/Tuscon_Arizona_Desert_Sunset_Over_Mountains_-_panoramio.jpg')
+  /* Imagem de fundo fixa (deserto do Arizona) */
+  background-size: cover
+  /* Faz a imagem cobrir toda a tela, mantendo proporção */
+  background-repeat: no-repeat
+  /* Impede repetição da imagem */
+  color: #000
+  /* Cor padrão do texto (preto) */
+  line-height: 1.5
+  /* Altura de linha para melhor legibilidade */
+  min-height: 100vh
+  /* Garante que o body ocupe pelo menos a altura total da viewport */
+  background-attachment: fixed
+  /* Fixa o background durante o scroll (efeito parallax) */
+  overflow-y: scroll
+  /* Força barra de rolagem vertical constante (evita jumps no layout) */
+
+/* Container raiz da aplicação React */
+#root
+  padding: 20px
+  /* Adiciona um padding ao redor de toda a aplicação */

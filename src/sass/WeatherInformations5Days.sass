@@ -1,0 +1,164 @@
+/* src/sass/WeatherInformations5Days.sass */
+/* Estilos do componente WeatherInformations5Days (previsão 5 dias) */
+
+/* Container principal da previsão para 5 dias */
+.weather-container
+  position: relative
+  /* Permite sobreposição de elementos filhos absolutos (pseudo-elemento ::after) */
+  background-color: rgba(180, 180, 180, 0.2)
+  /* Fundo cinza semi-transparente (20% de opacidade) */
+  border-radius: 15px
+  /* Bordas arredondadas suaves */
+  padding: 20px
+  /* Espaçamento interno maior que o do clima atual */
+  margin: 20px 0
+  /* Margem vertical para separação */
+  z-index: 1
+  /* Z-index maior que o do clima atual para garantir ordem de empilhamento */
+  
+  /* Efeito de brilho solar dinâmico (pseudo-elemento sobreposto) */
+  &::after
+    content: ''
+    /* Necessário para pseudo-elementos, mesmo vazio */
+    position: absolute
+    /* Posicionamento absoluto dentro do container */
+    top: 50%
+    /* Alinhamento vertical central */
+    left: 50%
+    /* Alinhamento horizontal central */
+    transform: translate(-50%, -50%)
+    /* Corrige deslocamento para verdadeiro centro */
+    width: 100%
+    /* Largura total do container pai */
+    height: 100%
+    /* Altura total do container pai */
+    background: radial-gradient(circle, rgba(255, 230, 0, 0.8) 20%, rgba(255, 255, 255, 0) 70%)
+    /* Gradiente radial: núcleo amarelo brilhante (80% opacidade) que desvanece para transparente */
+    border-radius: 50%
+    /* Formato circular para simular sol */
+    animation: sunGlowHorizontal 10s ease-in-out infinite
+    /* Aplica animação contínua de movimento horizontal */
+    z-index: -1
+    /* Coloca atrás do conteúdo principal (texto, imagens) */
+    opacity: 0.6
+    /* Transparência para efeito sutil e não intrusivo */
+
+/* Animação do brilho solar móvel (horizontal) */
+@keyframes sunGlowHorizontal
+  0%
+    transform: translate(-50%, -50%) translateX(-30%) scale(0.9)
+    /* Posição inicial: deslocado 30% para esquerda e levemente reduzido */
+  50%
+    transform: translate(-50%, -50%) translateX(30%) scale(1)
+    /* Posição intermediária: deslocado 30% para direita e tamanho normal */
+  100%
+    transform: translate(-50%, -50%) translateX(-30%) scale(0.9)
+    /* Retorna à posição inicial suavemente */
+
+/* Cabeçalho da seção de previsão */
+h3
+  font-size: 2rem
+  /* Tamanho destacado, mas menor que o título principal */
+  font-weight: bolder
+  /* Peso extra para ênfase */
+  margin-bottom: 20px
+  /* Espaço abaixo do título */
+  position: relative
+  /* Permite futuros efeitos de sobreposição (ex: underline animado) */
+
+/* Grid de previsões responsivo (flexbox) */
+.weather-list
+  display: flex
+  /* Layout flexível para organização horizontal */
+  justify-content: space-between
+  /* Distribui os cards uniformemente no espaço disponível */
+  flex-wrap: wrap
+  /* Permite quebra para múltiplas linhas em telas menores */
+  gap: 7px
+  /* Espaçamento uniforme entre os cards */
+
+/* Cards individuais de previsão (um para cada dia) */
+.weather-item
+  text-align: center
+  /* Alinhamento central do conteúdo (texto e ícone) */
+  background-color: rgba(180, 180, 180, 0.8)
+  /* Fundo cinza mais opaco (80%) para melhor legibilidade sobre o brilho */
+  border-radius: 12px
+  /* Bordas arredondadas modernas */
+  padding: 10px
+  /* Espaçamento interno */
+  max-width: 169px
+  /* Largura máxima para consistência visual */
+  position: relative
+  /* Base para elementos posicionados (pseudo-elemento ::before) */
+  animation: floatShadow 3s ease-in-out infinite
+  /* Aplica animação de flutuação contínua */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+  /* Sombra sutil para profundidade */
+  transition: all 0.3s ease
+  /* Transições suaves para hover */
+  
+  /* Camada de brilho interno (pseudo-elemento) */
+  &::before
+    content: ''
+    /* Necessário para pseudo-elementos */
+    position: absolute
+    /* Cobre todo o card */
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    border-radius: 12px
+    /* Herda o border-radius do card */
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3)
+    /* Sombra interna branca para efeito de brilho */
+    animation: innerGlow 2.5s alternate infinite
+    /* Animação de pulsação do brilho interno */
+
+/* Animação de flutuação 3D (sobe e desce com sombra dinâmica) */
+@keyframes floatShadow
+  0%, 100%
+    transform: translateY(0)
+    /* Estado neutro (no nível base) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 165, 0, 0.3)
+    /* Sombra ambiente + leve brilho laranja */
+  50%
+    transform: translateY(-5px)
+    /* Elevação de 5px */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 140, 0, 0.5)
+    /* Sombra mais intensa e brilho laranja mais forte */
+
+/* Animação de pulsação interna (brilho alterna entre mínimo e máximo) */
+@keyframes innerGlow
+  0%
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2)
+    /* Brilho interno mínimo */
+  100%
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.4)
+    /* Brilho interno máximo */
+
+/* Efeito de interação ao passar o mouse (hover) */
+.weather-item:hover
+  transform: scale(1.02) translateY(-2px)
+  /* Crescimento sutil (2%) e elevação adicional */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 69, 0, 0.6)
+  /* Sombra dramática e brilho laranja-vermelho intenso */
+
+/* Tipografia especializada para o dia da semana */
+.forecast-day
+  font-size: 1.12rem
+  /* Tamanho legível */
+  text-transform: capitalize
+  /* Garante que dias da semana comecem com maiúscula (API retorna minúsculas) */
+
+/* Tipografia para descrição do tempo */
+.forecast-description
+  font-size: 1rem
+  /* Tamanho um pouco menor que o dia */
+  text-transform: capitalize
+  /* Capitaliza descrição (ex: "nublado") */
+
+/* Tipografia para temperaturas (dados numéricos) */
+.forecast-temperature
+  font-size: 0.85rem
+  /* Tamanho discreto para informações secundárias */

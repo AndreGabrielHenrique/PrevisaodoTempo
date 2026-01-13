@@ -1,4 +1,7 @@
-# Logs
+# .gitignore
+# Arquivos e diretórios que devem ser ignorados pelo Git (não commitados)
+
+# Logs de ferramentas de pacote e debugging
 logs
 *.log
 npm-debug.log*
@@ -7,12 +10,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependências do Node.js (devem ser instaladas via npm install)
 node_modules
+
+# Diretórios de build/compilação
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Arquivos e diretórios de editores/IDEs
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +28,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignorar arquivos de ambiente (contêm segredos como chaves de API)
+.env
+
+# Nota: O arquivo .env é listado especificamente para garantir que nunca seja commitado acidentalmente

@@ -1,23 +1,28 @@
+<!-- index.html -->
+<!-- Página HTML raiz que serve como container para a aplicação React -->
+
 <!doctype html>
+<!-- Declaração do tipo de documento HTML5 -->
 <html lang="pt-br">
+  <!-- Elemento raiz com atributo de idioma português do Brasil -->
   <head>
-    <!-- Define o charset como UTF-8 para suportar caracteres especiais -->
+    <!-- Define o charset como UTF-8 para suportar caracteres especiais (acentos, ç, etc.) -->
     <meta charset="UTF-8" />
     
-    <!-- Ícone da aba do navegador -->
+    <!-- Ícone da aba do navegador (favicon) -->
     <link rel="shortcut icon" href="cloud.png" type="image/x-icon">
     
-    <!-- Configuração de viewport para responsividade -->
+    <!-- Configuração de viewport para responsividade em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Título da página exibido na aba do navegador -->
     <title>Previsão do Tempo</title>
   </head>
   <body>
-    <!-- Div onde a aplicação React será renderizada -->
+    <!-- Div onde a aplicação React será renderizada (ponto de montagem) -->
     <div id="root"></div>
     
-    <!-- Script principal da aplicação (ponto de entrada) -->
+    <!-- Script principal da aplicação (ponto de entrada do módulo JavaScript) -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

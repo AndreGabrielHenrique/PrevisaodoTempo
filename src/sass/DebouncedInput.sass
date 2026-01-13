@@ -1,0 +1,37 @@
+/* src/sass/DebouncedInput.sass */
+
+/* Estilo base do input com debounce */
+.debounced-input
+  padding: 10px
+  /* Espaçamento interno confortável */
+  border-radius: 20px 0 0 20px
+  /* Bordas arredondadas apenas à esquerda (para combinar com botão) */
+  border: none
+  /* Remove a borda padrão do navegador */
+  width: 100%
+  /* Ocupa toda a largura do container pai */
+  outline: none
+  /* Remove o contorno azul padrão ao focar */
+  font-size: 1rem
+  /* Tamanho de fonte padrão legível */
+  transition: all 0.3s ease
+  /* Transição suave para todas as propriedades animáveis */
+  background: rgba(255, 255, 255, 0.9)
+  /* Fundo branco semi-transparente */
+  color: #333
+  /* Cor do texto escuro para contraste */
+  margin-top: 20px
+  /* Espaçamento superior para separar de elementos acima */
+
+/* Efeito ao focar no input (acessibilidade e feedback visual) */
+.debounced-input:focus
+  box-shadow: 0 0 8px rgba(255, 165, 0, 0.3)
+  /* Sombra laranja suave ao redor */
+
+/* Adaptação para modo escuro (se o usuário preferir) */
+@media (prefers-color-scheme: dark)
+  .debounced-input
+    background: rgba(0, 0, 0, 0.7)
+    /* Fundo escuro semi-transparente */
+    color: #fff
+    /* Texto branco para contraste */

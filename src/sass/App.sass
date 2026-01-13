@@ -1,0 +1,136 @@
+/* src/sass/App.sass */
+
+/* Animação principal do título "Previsão do Tempo" */
+@keyframes windEffect
+  0%, 100%
+    transform: translateX(0) rotateZ(0deg)
+    /* Posição inicial/final */
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3)
+    /* Sombra suave */
+
+  25%
+    transform: translateX(-2px) rotateZ(-1deg)
+    /* Movimento para esquerda com leve rotação */
+    text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.2)
+    /* Sombra mais intensa */
+
+  75%
+    transform: translateX(2px) rotateZ(1deg)
+    /* Movimento para direita com leve rotação oposta */
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2)
+    /* Sombra assimétrica (direita) */
+
+/* Estilo do título principal */
+h1
+  font-size: 4rem
+  /* Tamanho grande da fonte para impacto visual */
+  -webkit-text-stroke: 1px rgba(187, 87, 62, 255)
+  /* Borda sutil rosa-alaranjada ao redor das letras (melhor legibilidade) */
+  color: rgba(174, 84, 113, 255)
+  /* Cor principal do texto (rosa) */
+  display: inline-block
+  /* Necessário para aplicar transformações e animações */
+  animation: windEffect 3s ease-in-out infinite
+  /* Aplica animação de vento contínua com timing suave */
+  position: relative
+  margin: 20px 0
+  /* Espaçamento vertical acima e abaixo */
+
+/* Container principal da aplicação */
+.container
+  max-width: 1000px
+  /* Largura máxima do conteúdo para telas grandes */
+  padding: 30px
+  /* Espaçamento interno para respirar */
+  margin: 0 auto
+  /* Centraliza horizontalmente na tela */
+  text-align: center
+  /* Alinha todo o conteúdo textual ao centro */
+  position: relative
+  /* Contexto de posicionamento para elementos filhos absolutos */
+  z-index: 0
+  /* Mantém atrás do dropdown (z-index menor) */
+  overflow: hidden
+  /* Impede que elementos internos causem scroll horizontal */
+
+/* Container de busca (input + botão) */
+.search-container
+  display: flex
+  /* Layout flex para alinhar input e botão horizontalmente */
+  justify-content: center
+  /* Centraliza o conjunto horizontalmente */
+  align-items: center
+  /* Alinha verticalmente ao centro */
+  gap: 0
+  /* Sem espaçamento entre input e botão (bordas se tocam) */
+  width: 100%
+  /* Ocupa toda a largura disponível */
+  max-width: 550px
+  /* Largura máxima para não ficar muito esticado em telas grandes */
+  margin: 20px auto
+  /* Margem vertical e centralização horizontal */
+  position: relative
+  /* Contexto para posicionamento absoluto do dropdown */
+  outline: none
+  /* Remove outline do próprio container */
+  border: none
+  /* Remove borda padrão */
+
+  /* Remove outline do input quando dentro do search-container */
+  input:focus
+    outline: none
+    border: none
+    box-shadow: none
+
+  &:focus
+    outline: none
+    border: none
+
+/* Estilização do botão de busca */
+.search-container button
+  padding: 6px 14px
+  /* Espaçamento interno vertical e horizontal */
+  border-radius: 0 20px 20px 0
+  /* Bordas arredondadas apenas no lado direito */
+  white-space: nowrap
+  /* Impede quebra de texto */
+  background: #000
+  /* Fundo preto */
+  color: #FF5566
+  /* Texto rosa avermelhado */
+  border: 2px solid #ccc
+  /* Borda cinza */
+  border-left: none
+  /* Remove borda esquerda para unir visualmente com o input */
+  transition: all 0.3s
+  /* Transição suave para hover */
+  cursor: pointer
+  /* Cursor pointer para indicar clicabilidade */
+  font-weight: bold
+  /* Texto em negrito */
+  height: 44px
+  /* Altura fixa para combinar com o input */
+  flex-shrink: 0
+  /* Impede que o botão encolha */
+
+.search-container button:hover
+  background: #222
+  /* Fundo preto mais claro no hover */
+  border-color: #FF5566
+  /* Borda assume cor rosa avermelhada */
+  transform: scale(1.02)
+  /* Leve aumento para feedback visual */
+
+/* Estilo para o estado de carregamento (texto exibido enquanto busca dados) */
+.weather-loading
+  font-size: xx-large
+  /* Tamanho de fonte muito grande para destaque */
+  margin-top: 20px
+  /* Espaçamento superior para separar do campo de busca */
+
+/* Estilo para o estado de erro (mensagens de erro de validação ou API) */
+.weather-error
+  color: rgb(83, 7, 15)
+  /* Cor vermelho escuro para contraste e seriedade */
+  margin-top: 20px
+  /* Espaçamento superior para separar do campo de busca */

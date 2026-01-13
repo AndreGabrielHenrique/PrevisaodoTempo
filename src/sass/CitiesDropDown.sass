@@ -1,0 +1,136 @@
+/* src/sass/CitiesDropDown.sass */
+
+/* Container principal do componente de autocompletar */
+.autocomplete-wrapper
+  position: relative
+  /* Necessário para posicionar a lista de sugestões absolutamente */
+  width: 100%
+  /* Ocupa toda a largura do container pai */
+  z-index: 9999
+  /* Z-index altíssimo para garantir sobreposição sobre outros elementos */
+
+/* Estilo da lista de sugestões (dropdown) */
+.suggestions-list
+  position: absolute
+  /* Posiciona absolutamente em relação ao .autocomplete-wrapper */
+  top: calc(100% + 6px)
+  /* Coloca logo abaixo do input com um pequeno gap de 6px */
+  left: 0
+  width: 100%
+  max-height: 300px
+  /* Altura máxima para não ocupar tela toda */
+  overflow-y: auto
+  /* Scroll vertical se necessário */
+  overflow-x: hidden
+  /* Nunca scroll horizontal */
+  background: #fff
+  /* Fundo branco */
+  border: 1px solid #e6e6e6
+  /* Borda cinza clara */
+  border-radius: 8px
+  /* Bordas arredondadas suaves */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08)
+  /* Sombra para elevação e destaque */
+  display: block !important
+  /* Garante display block mesmo se outros estilos tentarem esconder */
+  opacity: 1 !important
+  /* Garante opacidade total */
+  transition: opacity 0.12s
+  /* Transição suave para opacidade (se houver fade) */
+
+/* Estilo de cada item (cidade) na lista de sugestões */
+.suggestion-item
+  padding: 12px 15px
+  /* Espaçamento interno confortável */
+  overflow: hidden
+  /* Esconde conteúdo que ultrapassar */
+  text-overflow: ellipsis
+  /* Adiciona "..." se texto for muito longo */
+  white-space: nowrap
+  /* Impede quebra de linha */
+  box-sizing: border-box
+  /* Inclui padding na largura total */
+
+/* Personalização da scrollbar (apenas navegadores WebKit) */
+.suggestions-list::-webkit-scrollbar
+  width: 8px
+  /* Largura fina da scrollbar */
+
+.suggestions-list::-webkit-scrollbar-track
+  background: #f1f1f1
+  /* Cor de fundo da trilha */
+
+.suggestions-list::-webkit-scrollbar-thumb
+  background: #888
+  /* Cor do "polegar" da scrollbar */
+  border-radius: 4px
+  /* Bordas arredondadas */
+
+.suggestions-list::-webkit-scrollbar-thumb:hover
+  background: #555
+  /* Cor do polegar ao passar mouse */
+
+/* Estado de foco (acessibilidade via teclado) */
+.suggestion-item:focus
+  background: #007bff
+  /* Fundo azul quando focado (teclado) */
+  color: white
+
+/* Estados de hover e selecionado (via teclado ou mouse) */
+.suggestion-item:hover, .suggestion-item.selected
+  background: #000 !important
+  /* Fundo preto */
+  color: #fff !important
+  /* Texto branco */
+  transform: none !important
+  /* Remove transformações de outros estilos */
+  box-shadow: none !important
+  /* Remove sombras de outros estilos */
+
+/* Container interno do item para layout flexível */
+.suggestion-item > div
+  display: flex
+  justify-content: space-between
+  /* Espaça nome e possível info adicional */
+  gap: 8px
+  /* Gap entre elementos filhos */
+  align-items: center
+  /* Alinha verticalmente ao centro */
+
+/* Estilo do span que contém o nome da cidade */
+.suggestion-item > div span
+  min-width: 0
+  /* Permite que o elemento flexível encolha e mostre ellipsis */
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+/* Efeito de clique (ativo) */
+.suggestion-item:active
+  transform: scale(0.98)
+  /* Leve redução para dar feedback tátil */
+
+/* Hover para itens não selecionados (para quando há seleção via teclado e hover simultâneo) */
+.suggestion-item:hover:not(.selected)
+  background: #f0f0f0
+  /* Fundo cinza muito claro */
+
+/* Estilo do campo de input dentro do autocomplete-wrapper */
+.autocomplete-wrapper input
+  width: 100% !important
+  /* Força 100% de largura (sobrescreve outros estilos) */
+  height: 44px
+  /* Altura fixa para alinhar com botão */
+  padding: 0 20px !important
+  /* Padding horizontal (sem padding vertical) */
+  border: 2px solid #ccc !important
+  /* Borda cinza espessa */
+  border-radius: 20px 0 0 20px !important
+  /* Bordas arredondadas apenas à esquerda */
+  font-size: 1rem
+  /* Tamanho de fonte legível */
+
+/* Esconde autocomplete nativo do navegador (Chrome, Safari) */
+input:-webkit-autofill
+  -webkit-box-shadow: 0 0 0 30px white inset !important
+  /* Sobrescreve o fundo amarelo do autofill com branco */
